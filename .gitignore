@@ -2,6 +2,9 @@
 output/
 temp/
 
+# Mistake: PATH/GZ_SIM_* pasted as a path creates "./:/home/..." (folder ":" then "home", ...).
+:/home/
+
 # --- Python ---
 __pycache__/
 *.py[cod]
