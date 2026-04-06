@@ -1,0 +1,51 @@
+# --- Generated / runtime (see scripts/utils/param.py) ---
+output/
+temp/
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg
+*.egg-info/
+.eggs/
+dist/
+build/
+pip-wheel-metadata/
+
+# --- Virtual environments ---
+terrain_generator/
+.venv/
+venv/
+ENV/
+env/
+
+# --- Tests / tooling ---
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.tox/
+
+# --- Editors / OS ---
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# --- Local secrets (do not commit API keys) ---
+.env
+.env.*
+!.env.example
+
+# --- Notebooks ---
+.ipynb_checkpoints/
+
+# --- Logs ---
+*.log
