@@ -1,0 +1,1307 @@
+{
+  "building": {
+    "extent": 4096,
+    "version": 2,
+    "features": [
+      {
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                17,
+                382
+              ],
+              [
+                45,
+                352
+              ],
+              [
+                0,
+                310
+              ],
+              [
+                -28,
+                340
+              ],
+              [
+                17,
+                382
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "type": "building",
+          "min_height": 0.0,
+          "height": 3.0,
+          "extrude": "true",
+          "iso_3166_1": "GB",
+          "iso_3166_2": "GB-ENG",
+          "underground": "false"
+        },
+        "id": 479495486520575,
+        "type": "Feature"
+      },
+      {
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                64,
+                285
+              ],
+              [
+                81,
+                260
+              ],
+              [
+                43,
+                234
+              ],
+              [
+                26,
+                260
+              ],
+              [
+                64,
+                285
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "type": "building",
+          "min_height": 0.0,
+          "height": 3.0,
+          "extrude": "true",
+          "iso_3166_1": "GB",
+          "iso_3166_2": "GB-ENG",
+          "underground": "false"
+        },
+        "id": 216460089788895,
+        "type": "Feature"
+      },
+      {
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                4039,
+                3417
+              ],
+              [
+                4063,
+                3408
+              ],
+              [
+                4028,
+                3320
+              ],
+              [
+                4004,
+                3330
+              ],
+              [
+                4039,
+                3417
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "type": "building",
+          "min_height": 0.0,
+          "height": 3.0,
+          "extrude": "true",
+          "iso_3166_1": "GB",
+          "iso_3166_2": "GB-ENG",
+          "underground": "false"
+        },
+        "id": 1495353238363945,
+        "type": "Feature"
+      },
+      {
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                4077,
+                3294
+              ],
+              [
+                4129,
+                3273
+              ],
+              [
+                4129,
+                3199
+              ],
+              [
+                4052,
+                3231
+              ],
+              [
+                4077,
+                3294
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "type": "building",
+          "min_height": 0.0,
+          "height": 3.0,
+          "extrude": "true",
+          "iso_3166_1": "GB",
+          "iso_3166_2": "GB-ENG",
+          "underground": "false"
+        },
+        "id": 5132026887923305,
+        "type": "Feature"
+      },
+      {
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                147,
+                239
+              ],
+              [
+                169,
+                215
+              ],
+              [
+                63,
+                116
+              ],
+              [
+                41,
+                141
+              ],
+              [
+                147,
+                239
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "type": "building",
+          "min_height": 0.0,
+          "height": 3.0,
+          "extrude": "true",
+          "iso_3166_1": "GB",
+          "iso_3166_2": "GB-ENG",
+          "underground": "false"
+        },
+        "id": 2411218700875385,
+        "type": "Feature"
+      }
+    ],
+    "type": "FeatureCollection"
+  },
+  "landuse": {
+    "extent": 4096,
+    "version": 2,
+    "features": [
+      {
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  1956,
+                  1968
+                ],
+                [
+                  1982,
+                  1877
+                ],
+                [
+                  1949,
+                  1828
+                ],
+                [
+                  2228,
+                  1032
+                ],
+                [
+                  2344,
+                  834
+                ],
+                [
+                  2517,
+                  457
+                ],
+                [
+                  2732,
+                  408
+                ],
+                [
+                  2905,
+                  189
+                ],
+                [
+                  2572,
+                  84
+                ],
+                [
+                  2012,
+                  76
+                ],
+                [
+                  1993,
+                  -64
+                ],
+                [
+                  1617,
+                  -64
+                ],
+                [
+                  1593,
+                  157
+                ],
+                [
+                  1300,
+                  92
+                ],
+                [
+                  1240,
+                  -64
+                ],
+                [
+                  1109,
+                  -64
+                ],
+                [
+                  1224,
+                  232
+                ],
+                [
+                  1149,
+                  729
+                ],
+                [
+                  412,
+                  284
+                ],
+                [
+                  209,
+                  493
+                ],
+                [
+                  -64,
+                  318
+                ],
+                [
+                  -64,
+                  1523
+                ],
+                [
+                  788,
+                  1940
+                ],
+                [
+                  1956,
+                  1968
+                ]
+              ]
+            ],
+            [
+              [
+                [
+                  869,
+                  4160
+                ],
+                [
+                  824,
+                  3784
+                ],
+                [
+                  930,
+                  3589
+                ],
+                [
+                  872,
+                  2880
+                ],
+                [
+                  736,
+                  2744
+                ],
+                [
+                  778,
+                  2149
+                ],
+                [
+                  -64,
+                  1696
+                ],
+                [
+                  -64,
+                  4160
+                ],
+                [
+                  869,
+                  4160
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "type": "wood",
+          "sizerank": 1,
+          "class": "wood"
+        },
+        "id": 0,
+        "type": "Feature"
+      },
+      {
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                4160,
+                4160
+              ],
+              [
+                4160,
+                3477
+              ],
+              [
+                4056,
+                3496
+              ],
+              [
+                3904,
+                3504
+              ],
+              [
+                3576,
+                3488
+              ],
+              [
+                3379,
+                3077
+              ],
+              [
+                3040,
+                2776
+              ],
+              [
+                3064,
+                2072
+              ],
+              [
+                2196,
+                2072
+              ],
+              [
+                1976,
+                2028
+              ],
+              [
+                1956,
+                1968
+              ],
+              [
+                911,
+                1943
+              ],
+              [
+                908,
+                2748
+              ],
+              [
+                996,
+                4120
+              ],
+              [
+                1624,
+                4160
+              ],
+              [
+                4160,
+                4160
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "type": "farmland",
+          "sizerank": 1,
+          "class": "agriculture"
+        },
+        "id": 0,
+        "type": "Feature"
+      },
+      {
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                3904,
+                3504
+              ],
+              [
+                3944,
+                3208
+              ],
+              [
+                4160,
+                2970
+              ],
+              [
+                4160,
+                2193
+              ],
+              [
+                4040,
+                2128
+              ],
+              [
+                3832,
+                1928
+              ],
+              [
+                3176,
+                1936
+              ],
+              [
+                3064,
+                2072
+              ],
+              [
+                3040,
+                2776
+              ],
+              [
+                3379,
+                3077
+              ],
+              [
+                3576,
+                3488
+              ],
+              [
+                3904,
+                3504
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "type": "wood",
+          "sizerank": 6,
+          "class": "wood"
+        },
+        "id": 0,
+        "type": "Feature"
+      },
+      {
+        "geometry": {
+          "type": "MultiPolygon",
+          "coordinates": [
+            [
+              [
+                [
+                  4160,
+                  600
+                ],
+                [
+                  4160,
+                  -64
+                ],
+                [
+                  3004,
+                  -64
+                ],
+                [
+                  3852,
+                  316
+                ],
+                [
+                  4160,
+                  600
+                ]
+              ]
+            ],
+            [
+              [
+                [
+                  1593,
+                  157
+                ],
+                [
+                  1617,
+                  -64
+                ],
+                [
+                  1240,
+                  -64
+                ],
+                [
+                  1300,
+                  92
+                ],
+                [
+                  1593,
+                  157
+                ]
+              ]
+            ],
+            [
+              [
+                [
+                  2644,
+                  1880
+                ],
+                [
+                  2868,
+                  1136
+                ],
+                [
+                  3304,
+                  252
+                ],
+                [
+                  3016,
+                  76
+                ],
+                [
+                  2624,
+                  -64
+                ],
+                [
+                  1993,
+                  -64
+                ],
+                [
+                  2012,
+                  76
+                ],
+                [
+                  2572,
+                  84
+                ],
+                [
+                  2905,
+                  189
+                ],
+                [
+                  2732,
+                  408
+                ],
+                [
+                  2517,
+                  457
+                ],
+                [
+                  2303,
+                  904
+                ],
+                [
+                  2228,
+                  1032
+                ],
+                [
+                  1949,
+                  1828
+                ],
+                [
+                  2644,
+                  1880
+                ]
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "type": "forest",
+          "sizerank": 6,
+          "class": "wood"
+        },
+        "id": 0,
+        "type": "Feature"
+      },
+      {
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                3904,
+                3504
+              ],
+              [
+                4056,
+                3496
+              ],
+              [
+                4160,
+                3464
+              ],
+              [
+                4160,
+                2970
+              ],
+              [
+                3944,
+                3208
+              ],
+              [
+                3904,
+                3504
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "type": "farmyard",
+          "sizerank": 10,
+          "class": "agriculture"
+        },
+        "id": 0,
+        "type": "Feature"
+      },
+      {
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                3064,
+                2072
+              ],
+              [
+                3176,
+                1936
+              ],
+              [
+                2644,
+                1880
+              ],
+              [
+                1949,
+                1828
+              ],
+              [
+                1982,
+                1877
+              ],
+              [
+                1956,
+                1968
+              ],
+              [
+                1976,
+                2028
+              ],
+              [
+                2196,
+                2072
+              ],
+              [
+                3064,
+                2072
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "type": "wood",
+          "sizerank": 12,
+          "class": "wood"
+        },
+        "id": 0,
+        "type": "Feature"
+      }
+    ],
+    "type": "FeatureCollection"
+  },
+  "landuse_overlay": {
+    "extent": 4096,
+    "version": 2,
+    "features": [
+      {
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                4227,
+                4227
+              ],
+              [
+                4227,
+                -131
+              ],
+              [
+                -131,
+                -131
+              ],
+              [
+                -131,
+                4227
+              ],
+              [
+                4227,
+                4227
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "type": "protected_area",
+          "name_script": "Latin",
+          "sizerank": 1,
+          "class": "national_park",
+          "name": "North Wessex Downs National Landscape"
+        },
+        "id": 2904192,
+        "type": "Feature"
+      }
+    ],
+    "type": "FeatureCollection"
+  },
+  "poi_label": {
+    "extent": 4096,
+    "version": 2,
+    "features": [
+      {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            3745,
+            2614
+          ]
+        },
+        "properties": {
+          "sizerank": 11,
+          "type": "Wood",
+          "name_script": "Latin",
+          "category_en": "Wood",
+          "maki": "park",
+          "filterrank": 1,
+          "iso_3166_1": "GB",
+          "iso_3166_2": "GB-ENG",
+          "category_zh-Hans": "\u6811\u6797",
+          "class": "park_like",
+          "name": "Home Copse"
+        },
+        "id": 2016589411,
+        "type": "Feature"
+      }
+    ],
+    "type": "FeatureCollection"
+  },
+  "road": {
+    "extent": 4096,
+    "version": 2,
+    "features": [
+      {
+        "geometry": {
+          "type": "LineString",
+          "coordinates": [
+            [
+              4224,
+              2330
+            ],
+            [
+              3968,
+              2137
+            ],
+            [
+              3917,
+              2059
+            ],
+            [
+              3686,
+              1976
+            ],
+            [
+              3446,
+              1999
+            ],
+            [
+              2515,
+              1920
+            ],
+            [
+              2375,
+              1895
+            ],
+            [
+              1982,
+              1877
+            ],
+            [
+              1506,
+              1214
+            ],
+            [
+              1381,
+              1088
+            ],
+            [
+              1294,
+              980
+            ],
+            [
+              1283,
+              945
+            ],
+            [
+              1234,
+              878
+            ],
+            [
+              1184,
+              722
+            ]
+          ]
+        },
+        "properties": {
+          "structure": "none",
+          "type": "bridleway",
+          "oneway": "false",
+          "iso_3166_2": "GB-ENG",
+          "len": 820,
+          "iso_3166_1": "GB",
+          "class": "path"
+        },
+        "id": 7965872261,
+        "type": "Feature"
+      },
+      {
+        "geometry": {
+          "type": "MultiLineString",
+          "coordinates": [
+            [
+              [
+                3759,
+                2451
+              ],
+              [
+                3702,
+                2528
+              ],
+              [
+                3747,
+                2840
+              ],
+              [
+                3764,
+                3062
+              ],
+              [
+                3916,
+                3409
+              ]
+            ],
+            [
+              [
+                4224,
+                2563
+              ],
+              [
+                4084,
+                2508
+              ],
+              [
+                4002,
+                2524
+              ],
+              [
+                3759,
+                2451
+              ],
+              [
+                3731,
+                2381
+              ],
+              [
+                3743,
+                2198
+              ],
+              [
+                3686,
+                1976
+              ]
+            ],
+            [
+              [
+                2333,
+                4224
+              ],
+              [
+                2332,
+                4202
+              ],
+              [
+                2516,
+                2944
+              ],
+              [
+                2140,
+                2272
+              ],
+              [
+                2042,
+                2108
+              ],
+              [
+                2052,
+                2074
+              ],
+              [
+                1982,
+                1877
+              ]
+            ],
+            [
+              [
+                1184,
+                722
+              ],
+              [
+                1098,
+                698
+              ],
+              [
+                1022,
+                630
+              ],
+              [
+                779,
+                518
+              ],
+              [
+                604,
+                413
+              ],
+              [
+                410,
+                241
+              ],
+              [
+                381,
+                241
+              ],
+              [
+                352,
+                259
+              ]
+            ],
+            [
+              [
+                216,
+                366
+              ],
+              [
+                108,
+                450
+              ],
+              [
+                3,
+                467
+              ],
+              [
+                -128,
+                548
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "structure": "none",
+          "type": "footway",
+          "oneway": "false",
+          "iso_3166_2": "GB-ENG",
+          "len": 2060,
+          "iso_3166_1": "GB",
+          "class": "path"
+        },
+        "id": 13285502451,
+        "type": "Feature"
+      },
+      {
+        "geometry": {
+          "type": "LineString",
+          "coordinates": [
+            [
+              1035,
+              -128
+            ],
+            [
+              1147,
+              158
+            ],
+            [
+              1211,
+              446
+            ],
+            [
+              1179,
+              766
+            ],
+            [
+              923,
+              1118
+            ],
+            [
+              667,
+              1566
+            ],
+            [
+              571,
+              1950
+            ],
+            [
+              571,
+              2526
+            ],
+            [
+              603,
+              3102
+            ],
+            [
+              603,
+              3582
+            ],
+            [
+              571,
+              3998
+            ],
+            [
+              526,
+              4224
+            ]
+          ]
+        },
+        "properties": {
+          "surface": "unpaved",
+          "len": 1270,
+          "iso_3166_2": "GB-ENG",
+          "iso_3166_1": "GB",
+          "type": "bridleway",
+          "oneway": "false",
+          "structure": "none",
+          "class": "path"
+        },
+        "id": 418737591,
+        "type": "Feature"
+      },
+      {
+        "geometry": {
+          "type": "LineString",
+          "coordinates": [
+            [
+              1982,
+              1877
+            ],
+            [
+              2212,
+              1010
+            ],
+            [
+              2303,
+              904
+            ],
+            [
+              2249,
+              832
+            ],
+            [
+              2085,
+              763
+            ],
+            [
+              1940,
+              784
+            ],
+            [
+              1831,
+              779
+            ],
+            [
+              1612,
+              659
+            ],
+            [
+              1339,
+              592
+            ],
+            [
+              1254,
+              553
+            ],
+            [
+              1202,
+              539
+            ]
+          ]
+        },
+        "properties": {
+          "type": "track",
+          "iso_3166_2": "GB-ENG",
+          "access": "restricted",
+          "surface": "unpaved",
+          "len": 410,
+          "iso_3166_1": "GB",
+          "oneway": "false",
+          "structure": "none",
+          "class": "track"
+        },
+        "id": 7966562631,
+        "type": "Feature"
+      },
+      {
+        "geometry": {
+          "type": "MultiLineString",
+          "coordinates": [
+            [
+              [
+                4224,
+                3352
+              ],
+              [
+                3906,
+                3484
+              ]
+            ],
+            [
+              [
+                259,
+                -128
+              ],
+              [
+                217,
+                48
+              ],
+              [
+                237,
+                102
+              ],
+              [
+                346,
+                199
+              ],
+              [
+                358,
+                233
+              ],
+              [
+                352,
+                259
+              ],
+              [
+                323,
+                300
+              ],
+              [
+                264,
+                345
+              ],
+              [
+                225,
+                366
+              ],
+              [
+                183,
+                366
+              ],
+              [
+                76,
+                332
+              ],
+              [
+                -12,
+                276
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "structure": "none",
+          "type": "service",
+          "oneway": "false",
+          "iso_3166_2": "GB-ENG",
+          "len": 340,
+          "iso_3166_1": "GB",
+          "class": "service"
+        },
+        "id": 8083278231,
+        "type": "Feature"
+      },
+      {
+        "geometry": {
+          "type": "LineString",
+          "coordinates": [
+            [
+              4224,
+              684
+            ],
+            [
+              4118,
+              624
+            ],
+            [
+              3845,
+              381
+            ],
+            [
+              3717,
+              324
+            ],
+            [
+              3373,
+              190
+            ],
+            [
+              3082,
+              24
+            ],
+            [
+              2925,
+              -43
+            ],
+            [
+              2740,
+              -95
+            ],
+            [
+              2649,
+              -128
+            ]
+          ]
+        },
+        "properties": {
+          "type": "tertiary",
+          "surface": "paved",
+          "len": 2160,
+          "iso_3166_2": "GB-ENG",
+          "iso_3166_1": "GB",
+          "name_script": "Latin",
+          "oneway": "false",
+          "structure": "none",
+          "class": "tertiary",
+          "name": "Yattendon Ln"
+        },
+        "id": 6591835781,
+        "type": "Feature"
+      }
+    ],
+    "type": "FeatureCollection"
+  }
+}
