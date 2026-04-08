@@ -125,8 +125,35 @@
 				</div>
 			</div>
 
-
 			<div class="row">
+				<div class="col s12">
+					<label>Imagery source</label>
+					<p style="margin: 0.35rem 0 0.5rem;">
+						<label class="search-mode-option" style="margin-right: 1rem;">
+							<input name="imagery-source" type="radio" value="url" checked />
+							<span>Web tiles</span>
+						</label>
+						<label class="search-mode-option">
+							<input name="imagery-source" type="radio" value="geotiff" />
+							<span>Local GeoTIFF</span>
+						</label>
+					</p>
+				</div>
+			</div>
+
+			<div class="row" id="geotiff-row" style="display: none;">
+				<div class="input-field col s12">
+					<select id="geotiff-select">
+						<option value="" disabled selected>Select a GeoTIFF…</option>
+					</select>
+					<label>GeoTIFF file (server folder <code>tiff_img</code>)</label>
+				</div>
+				<p class="hints col s12" style="margin-top: 0;">
+					Put <code>.tif</code> files in <code>tiff_img</code> on the machine running the Flask server. They are not uploaded from the browser.
+				</p>
+			</div>
+
+			<div class="row" id="url-tile-row">
 				<div class="input-field col s10">
 					<input id="source-box" type="text" value='http://ecn.t0.tiles.virtualearth.net/tiles/a{quad}.jpeg?g=129&mkt=en&stl=H'>
 					<label for="source-box">Map Tile Source</label>

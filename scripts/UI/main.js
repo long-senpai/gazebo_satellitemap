@@ -615,7 +615,13 @@ $(function() {
 			}
 		});
 
-		$("#download-button").click(startDownloading)
+		$("#download-button").click(function () {
+			if ($('input[name="imagery-source"]:checked').val() === "geotiff") {
+				startGeotiffDownloading();
+			} else {
+				startDownloading();
+			}
+		});
 		$("#stop-button").click(stopDownloading)
 
 		var timestamp = Date.now().toString();
@@ -654,22 +660,176 @@ $(function() {
 				if (status === "completed") {
 					logItemRaw("Gazebo world generated successfully.");
 					$("#stop-button").html("FINISH");
+					updateProgress(1, 1);
 					
 					// Add the launch pad marker when generation is complete
 					createLaunchPadMarker();
+				} else if (status === "geotiff_tiles") {
+					var gp = response.message.geotiff_progress;
+					if (gp && gp.total) {
+						updateProgress(gp.done, gp.total);
+						if (gp.done === 0 || gp.done === gp.total) {
+							logItemRaw("GeoTIFF tiles: " + gp.done + " / " + gp.total);
+						}
+					}
+					setTimeout(() => pollTaskStatus(), 400);
 				} else if (status === "in_progress") {
-					logItemRaw("World Generation Inprogress..");
+					logItemRaw("World generation in progress…");
 					setTimeout(() => pollTaskStatus(), 5000); // Poll every 5 seconds
+				} else if (status === "failed") {
+					var err = response.message.error || "unknown error";
+					logItemRaw("Failed: " + err);
+					$("#stop-button").html("FINISH");
+					M.toast({ html: "Generation failed: " + err, displayLength: 6000 });
+				} else if (status === "idle" || status === "starting") {
+					setTimeout(() => pollTaskStatus(), 300);
 				} else {
 					logItemRaw("Unexpected status: " + status);
+					setTimeout(() => pollTaskStatus(), 2000);
 				}
 			} else {
 				logItemRaw("Unexpected response code: " + response.code);
 			}
 	    } catch (error) {
 	        logItemRaw("Error while checking task status: " + error.statusText);
-	        setTimeout(() => pollTaskStatus(taskId), 5000); // Retry after 5 seconds
+	        setTimeout(() => pollTaskStatus(), 5000); // Retry after 5 seconds
 	    }
+	}
+
+	function refreshImagerySourceUi() {
+		var useGeotiff = $('input[name="imagery-source"]:checked').val() === "geotiff";
+		$("#url-tile-row").toggle(!useGeotiff);
+		$("#geotiff-row").toggle(useGeotiff);
+		if (typeof M !== "undefined" && M.updateTextFields) {
+			M.updateTextFields();
+		}
+	}
+
+	window.geotiffFootprints = {};
+
+	function loadGeotiffList() {
+		$.getJSON("/api/local-tiffs")
+			.done(function (res) {
+				if (!res || res.code !== 200) {
+					M.toast({ html: "Could not list GeoTIFF files.", displayLength: 4000 });
+					return;
+				}
+				window.geotiffFootprints = {};
+				var sel = $("#geotiff-select");
+				sel.empty();
+				sel.append($("<option>").attr("value", "").text("Select a GeoTIFF…"));
+				(res.tiffs || []).forEach(function (t) {
+					if (t.error) {
+						sel.append(
+							$("<option>").attr("disabled", true).text(t.filename + " (" + t.error + ")")
+						);
+						return;
+					}
+					window.geotiffFootprints[t.filename] = t;
+					sel.append($("<option>").attr("value", t.filename).text(t.filename));
+				});
+				sel.formSelect();
+			})
+			.fail(function () {
+				M.toast({ html: "Request failed: /api/local-tiffs", displayLength: 4000 });
+			});
+	}
+
+	function initializeGeotiffPanel() {
+		$('input[name="imagery-source"]').on("change", refreshImagerySourceUi);
+		refreshImagerySourceUi();
+
+		$("#geotiff-select").on("change", function () {
+			var fn = $(this).val();
+			var fp = window.geotiffFootprints[fn];
+			if (!fp || fp.west == null || !map) return;
+			try {
+				map.fitBounds(
+					[
+						[fp.west, fp.south],
+						[fp.east, fp.north],
+					],
+					{ padding: 48, duration: 1200, maxZoom: 14 }
+				);
+			} catch (e) {
+				console.warn(e);
+			}
+		});
+
+		loadGeotiffList();
+	}
+
+	async function startGeotiffDownloading() {
+		if (draw.getAll().features.length == 0) {
+			M.toast({ html: "You need to select a region first.", displayLength: 3000 });
+			return;
+		}
+
+		var geotiffFn = $("#geotiff-select").val();
+		if (!geotiffFn) {
+			M.toast({ html: "Select a GeoTIFF file from the list.", displayLength: 3500 });
+			return;
+		}
+
+		cancellationToken = false;
+		requests = [];
+
+		$("#main-sidebar").hide();
+		$("#download-sidebar").show();
+		$(".tile-strip").html("");
+		$("#stop-button").html("STOP");
+		removeGrid();
+		clearLogs();
+		M.Toast.dismissAll();
+
+		removeLaunchPadMarker();
+
+		var timestamp = Date.now().toString();
+		updateProgress(0, 1);
+
+		var bounds = getBounds();
+		var area_rect = area();
+		var boundsArray = [
+			[bounds.getSouthWest().lng, bounds.getSouthWest().lat],
+			[bounds.getNorthEast().lng, bounds.getNorthEast().lat],
+		];
+		var centerArray = [bounds.getCenter().lng, bounds.getCenter().lat];
+		var launchLocation = window.launchLocation ? window.launchLocation : centerArray;
+		var includeBuildlings = $("#buildings-toggle").is(":checked");
+
+		var data = new FormData();
+		data.append("geotiffFilename", geotiffFn);
+		data.append("maxZoom", getMaxZoom());
+		data.append("outputDirectory", $("#output-directory-box").val());
+		data.append("outputFile", "{z}/{x}/{y}.png");
+		data.append("outputType", "png");
+		data.append("outputScale", "1");
+		data.append("timestamp", timestamp);
+		data.append("bounds", boundsArray.join(","));
+		data.append("center", centerArray.join(","));
+		data.append("launchLocation", launchLocation.join(","));
+		data.append("area", area_rect);
+		data.append("includeBuildlings", includeBuildlings);
+
+		try {
+			logItemRaw("Starting GeoTIFF tile export (server)…");
+			await $.ajax({
+				url: "/generate-from-geotiff",
+				async: true,
+				timeout: 60 * 1000,
+				type: "post",
+				contentType: false,
+				processData: false,
+				data: data,
+				dataType: "json",
+			});
+			pollTaskStatus();
+		} catch (err) {
+			logItemRaw("Could not start GeoTIFF generation: " + (err.statusText || err));
+			M.toast({ html: "Failed to start GeoTIFF generation.", displayLength: 4000 });
+			$("#main-sidebar").show();
+			$("#download-sidebar").hide();
+		}
 	}
 	async function startDownloading() {
 
@@ -955,4 +1115,5 @@ $(function() {
 	initializeGridPreview();
 	initializeMoreOptions();
 	initializeDownloader();
+	initializeGeotiffPanel();
 });

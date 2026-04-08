@@ -14,8 +14,13 @@ from utils.utils import Utils
 from utils.gazeboWorldGenerator import GazeboTerrianGenerator
 from utils.maptileUtils import maptile_utiles
 from utils.param import globalParam
+from utils.geotiffTileExporter import (
+    export_geotiff_to_output,
+    iter_tiles_wsen,
+    list_geotiffs,
+    safe_tiff_path,
+)
 import requests
-import mercantile
 app = Flask(__name__)
 lock = threading.Lock()
 
@@ -32,7 +37,7 @@ def random_string():
 def process_end_download(bounds, zoom_level, outputDirectory, outputFile, filePath, include_buildings=False):
 	global task_status
 	try:
-		task_status["status"] = "in_progress"
+		task_status = {"status": "in_progress"}
 		#Perform the long-running task
 		FileWriter.close(lock, os.path.join(globalParam.OUTPUT_BASE_PATH, outputDirectory), filePath, zoom_level)
 		true_boundaries = maptile_utiles.get_true_boundaries(bounds, zoom_level)
@@ -45,12 +50,85 @@ def process_end_download(bounds, zoom_level, outputDirectory, outputFile, filePa
 
 		terrian_generator = GazeboTerrianGenerator(orthodir_path,include_buildings)
 		terrian_generator.generate_gazebo_world()
-		task_status["status"] = "completed"
+		task_status = {"status": "completed"}
 		print("Gazebo world generation completed successfully.")
 
 	except Exception as e:
-		task_status["status"] = "failed"
+		task_status = {"status": "failed", "error": str(e)}
 		print(f"Error during processing: {e}")
+
+
+def geotiff_generation_worker(
+    geotiff_filename: str,
+    output_directory: str,
+    output_file: str,
+    zoom_level: int,
+    bounds: list,
+    center: list,
+    area_rect: str,
+    launch_location: list,
+    include_buildings: bool,
+):
+    global task_status
+    file_path = os.path.join(globalParam.OUTPUT_BASE_PATH, output_directory, output_file)
+    try:
+        safe_tiff_path(geotiff_filename)
+    except ValueError as ex:
+        task_status = {"status": "failed", "error": str(ex)}
+        print(ex)
+        return
+
+    try:
+        west, south, east, north = bounds
+        n_tiles = len(iter_tiles_wsen(west, south, east, north, zoom_level))
+        task_status = {
+            "status": "geotiff_tiles",
+            "geotiff_progress": {"done": 0, "total": n_tiles},
+        }
+
+        FileWriter.addMetadata(
+            lock,
+            os.path.join(globalParam.OUTPUT_BASE_PATH, output_directory),
+            file_path,
+            output_file,
+            "Local GeoTIFF",
+            "jpg",
+            bounds,
+            center,
+            area_rect,
+            zoom_level,
+            "mercator",
+            256,
+            launchLocation=launch_location,
+        )
+
+        def progress_cb(done, total):
+            global task_status
+            task_status = {
+                "status": "geotiff_tiles",
+                "geotiff_progress": {"done": done, "total": total},
+            }
+
+        export_geotiff_to_output(
+            geotiff_filename,
+            output_directory,
+            zoom_level,
+            bounds,
+            lock,
+            progress_cb=progress_cb,
+        )
+
+        process_end_download(
+            bounds,
+            zoom_level,
+            output_directory,
+            output_file,
+            file_path,
+            include_buildings,
+        )
+    except Exception as ex:
+        print(f"GeoTIFF pipeline error: {ex}")
+        task_status = {"status": "failed", "error": str(ex)}
 
 
 def validate_mapbox_key(api_key):
@@ -86,6 +164,57 @@ def task_status_endpoint():
 	result["code"] = 200
 	result["message"] = task_status
 	return jsonify(result)
+
+
+@app.route('/api/local-tiffs', methods=['GET'])
+def api_local_tiffs():
+    try:
+        items = list_geotiffs()
+        return jsonify({"code": 200, "tiffs": items, "path": globalParam.TIFF_IMG_PATH})
+    except Exception as ex:
+        return jsonify({"code": 500, "message": str(ex)}), 500
+
+
+@app.route('/generate-from-geotiff', methods=['POST'])
+def generate_from_geotiff():
+    postvars = request.form
+    geotiff_filename = str(postvars.get("geotiffFilename", "")).strip()
+    output_directory = postvars["outputDirectory"]
+    output_file = postvars.get("outputFile", "{z}/{x}/{y}.png")
+    zoom_level = int(postvars["maxZoom"])
+    timestamp = int(postvars["timestamp"])
+    bounds = list(map(float, postvars["bounds"].split(",")))
+    center = list(map(float, postvars["center"].split(",")))
+    area_rect = postvars.get("area", "0")
+    launch_location = list(map(float, postvars["launchLocation"].split(",")))
+    include_buildings = postvars.get("includeBuildlings", "true").lower() == "true"
+
+    output_directory = output_directory.replace("{timestamp}", str(timestamp))
+    output_file = output_file.replace("{timestamp}", str(timestamp))
+
+    if not geotiff_filename:
+        return jsonify({"code": 400, "message": "geotiffFilename required"}), 400
+
+    global task_status
+    task_status = {"status": "starting"}
+
+    thread = threading.Thread(
+        target=geotiff_generation_worker,
+        args=(
+            geotiff_filename,
+            output_directory,
+            output_file,
+            zoom_level,
+            bounds,
+            center,
+            area_rect,
+            launch_location,
+            include_buildings,
+        ),
+    )
+    thread.start()
+
+    return jsonify({"code": 200, "message": "GeoTIFF generation started"})
 
 @app.route('/download-tile', methods=['POST'])
 def download_tile():
